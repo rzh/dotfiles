@@ -1,0 +1,187 @@
+
+" vundle 
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" alternatively, pass a path where Vundle should install plugins
+"let path = '~/some/path/here'
+"call vundle#rc(path)
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/vundle'
+
+" scripts on GitHub repos
+Plugin 'tpope/vim-fugitive'
+
+" go setup
+Bundle "nsf/gocode"
+Bundle 'Blackrush/vim-gocode'
+
+" pakages
+" ctrlp.vim
+Bundle "kien/ctrlp.vim"
+
+" delimitMate
+Bundle "Raimondi/delimitMate"
+
+" gotags
+" nerdtree
+" supertab
+
+" syntastic
+Bundle "scrooloose/syntastic"
+
+" tagbar
+Bundle "majutsushi/tagbar"
+
+" tlib_vim
+Bundle "tomtom/tlib_vim"
+
+" vim-addon-mw-utils
+Bundle "MarcWeber/vim-addon-mw-utils"
+" vim-godef
+" vim-sensible
+Bundle "tpope/vim-sensible"
+" vim-snipmate
+" vim-snippets
+" YouCompleteMe
+Bundle "Valloric/YouCompleteMe"
+
+"
+
+filetype plugin indent off
+set runtimepath+=$GOROOT/misc/vim
+
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+
+"" disable ctags
+"" au BufWritePost *.go silent! !ctags -R --exclude=*.js &
+
+" this is for gotags
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
+
+filetype plugin indent on     " reuired
+
+
+set nowrap        " don't wrap lines
+set tabstop=4     " a tab is four spaces
+set backspace=indent,eol,start
+                  " allow backspacing over everything in insert mode
+set autoindent    " always set autoindenting on
+set copyindent    " copy the previous indentation on autoindenting
+set number        " always show line numbers
+set ruler         " Show cursor position.
+set hidden        " Handle multiple buffers better.
+set shiftwidth=4  " number of spaces to use for autoindenting
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+set showmatch     " set show matching parenthesis
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+set smarttab      " insert tabs on the start of a line according to
+                  "    shiftwidth, not tabstop
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+set scrolloff=3   " Show 3 lines of context around the cursor.
+
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+set nobackup
+set noswapfile
+
+nnoremap ; :    " use ; to trigger command mode, save shift-; -> :
+
+" change the mapleader from \ to ,
+let mapleader=" "
+
+nnoremap <Leader>p :CtrlPBuffer<CR>
+nnoremap <Leader>f :CtrlP<CR>
+
+" Splitting
+map <Leader>- :split<CR>
+map <Leader><bar> :vsplit<CR>
+
+map <leader>g :Gstatus<CR>
+nnoremap <Leader>w :w<CR>
+
+nnoremap <Leader>n :set invnumber<CR>
+
+" Quickly edit/reload the vimrc file
+" maps the ,ev and ,sv keys to edit/reload .vimrc.
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+
+" Removing search highlighting
+" nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <Leader><Space> :nohlsearch<CR>
+
+nmap <Leader>t :TagbarToggle<CR>
+
+let g:SuperTabDefaultCompletionType = "context"
+
+
+filetype plugin indent on
+filetype plugin on
+syntax on
+
+" switch buffer faster
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>  
+
+" enable mouse support
+set mouse=a
+
+" my functions
+fu! FormatHammer()
+	  %s/^\.\/reports\///g
+	  %s/^249_/249,/g
+	  %s/^rc2_/rc2,/g
+	  %s/^rc3_/rc3,/g
+	  %s/^260_/260,/g
+	  %s/\/perf_test_data\.csv //g
+	  1,$s/\//,/g
+	  %s/_1-1//g
+	  %s/_1-2//g
+	  %s/_2-1//g
+	  %s/_2-2//g
+endfunction
+
+noremap H ddkkp
+noremap N ddp
+
