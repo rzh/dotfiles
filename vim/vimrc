@@ -50,6 +50,9 @@ Bundle "tpope/vim-sensible"
 " YouCompleteMe
 Bundle "Valloric/YouCompleteMe"
 
+" vim-slime for tmux and repl
+Bundle "jpalardy/vim-slime"
+
 "
 
 filetype plugin indent off
@@ -171,7 +174,10 @@ set mouse=a
 fu! FormatHammer()
 	  %s/^\.\/reports\///g
 	  %s/^249_/249,/g
+	  %s/^rc0_/rc0,/g
+	  %s/^rc1_/rc1,/g
 	  %s/^rc2_/rc2,/g
+	  %s/^rc2b_/rc2b,/g
 	  %s/^rc3_/rc3,/g
 	  %s/^260_/260,/g
 	  %s/\/perf_test_data\.csv //g
@@ -184,4 +190,13 @@ endfunction
 
 noremap H ddkkp
 noremap N ddp
+
+" change ycm select key
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter']
+
+" now setup tmux
+" setup Slime for TMUX
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_default_config = {"socket_name": "default", "target_pane": ":0.1"}
 
