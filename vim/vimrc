@@ -16,8 +16,11 @@ Plugin 'gmarik/vundle'
 " scripts on GitHub repos
 Plugin 'tpope/vim-fugitive'
 
+" just use go-vim
+Bundle "fatih/vim-go"
+
 " go setup
-Bundle "nsf/gocode"
+"" Bundle "nsf/gocode"
 Bundle 'Blackrush/vim-gocode'
 
 " pakages
@@ -43,6 +46,8 @@ Bundle "tomtom/tlib_vim"
 " vim-addon-mw-utils
 Bundle "MarcWeber/vim-addon-mw-utils"
 " vim-godef
+Bundle "dgryski/vim-godef"
+
 " vim-sensible
 Bundle "tpope/vim-sensible"
 " vim-snipmate
@@ -53,44 +58,21 @@ Bundle "Valloric/YouCompleteMe"
 " vim-slime for tmux and repl
 Bundle "jpalardy/vim-slime"
 
+" Bundle 'luochen1990/rainbow'
+Bundle "kien/rainbow_parentheses.vim"
+
 "
 
 filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
+
+"" autocmd FileType go autocmd BufWritePre <buffer> Fmt
 
 "" disable ctags
 "" au BufWritePost *.go silent! !ctags -R --exclude=*.js &
 
-" this is for gotags
-let g:tagbar_type_go = {
-    \ 'ctagstype' : 'go',
-    \ 'kinds'     : [
-        \ 'p:package',
-        \ 'i:imports:1',
-        \ 'c:constants',
-        \ 'v:variables',
-        \ 't:types',
-        \ 'n:interfaces',
-        \ 'w:fields',
-        \ 'e:embedded',
-        \ 'm:methods',
-        \ 'r:constructor',
-        \ 'f:functions'
-    \ ],
-    \ 'sro' : '.',
-    \ 'kind2scope' : {
-        \ 't' : 'ctype',
-        \ 'n' : 'ntype'
-    \ },
-    \ 'scope2kind' : {
-        \ 'ctype' : 't',
-        \ 'ntype' : 'n'
-    \ },
-    \ 'ctagsbin'  : 'gotags',
-    \ 'ctagsargs' : '-sort -silent'
-\ }
 
 filetype plugin indent on     " reuired
 
@@ -126,7 +108,7 @@ set noerrorbells         " don't beep
 set nobackup
 set noswapfile
 
-nnoremap ; :    " use ; to trigger command mode, save shift-; -> :
+nnoremap ; :
 
 " change the mapleader from \ to ,
 let mapleader=" "
@@ -140,7 +122,6 @@ map <Leader><bar> :vsplit<CR>
 
 map <leader>g :Gstatus<CR>
 nnoremap <Leader>w :w<CR>
-
 nnoremap <Leader>n :set invnumber<CR>
 
 " Quickly edit/reload the vimrc file
@@ -199,4 +180,16 @@ let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter']
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":0.1"}
+
+" let g:rainbow_active = 1
+
+
+" enable Better Rainbow Parentheses https://github.com/kien/rainbow_parentheses.vim
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
