@@ -1,0 +1,15 @@
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h-%p
+    ControlPersist 600
+    ForwardAgent yes
+
+Host ssh1.mine
+    User rzhang
+    ForwardAgent yes
+
+Host !ssh1.mine *.mine
+    User rzhang
+    ForwardAgent yes
+    ProxyCommand ssh -q ssh1.mine nc %h %p
+
