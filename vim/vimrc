@@ -4,7 +4,7 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "let path = '~/some/path/here'
@@ -21,7 +21,9 @@ Bundle "fatih/vim-go"
 
 " go setup
 "" Bundle "nsf/gocode"
-Bundle 'Blackrush/vim-gocode'
+" Bundle 'Blackrush/vim-gocode'
+" vim-godef
+" Bundle "dgryski/vim-godef"
 
 " pakages
 " ctrlp.vim
@@ -29,6 +31,9 @@ Bundle "kien/ctrlp.vim"
 
 " delimitMate
 Bundle "Raimondi/delimitMate"
+
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'jnurmine/Zenburn'
 
 " gotags
 " nerdtree
@@ -45,8 +50,6 @@ Bundle "tomtom/tlib_vim"
 
 " vim-addon-mw-utils
 Bundle "MarcWeber/vim-addon-mw-utils"
-" vim-godef
-Bundle "dgryski/vim-godef"
 
 " vim-sensible
 Bundle "tpope/vim-sensible"
@@ -78,6 +81,7 @@ filetype plugin indent on     " reuired
 
 
 set nowrap        " don't wrap lines
+set expandtab
 set tabstop=4     " a tab is four spaces
 set backspace=indent,eol,start
                   " allow backspacing over everything in insert mode
@@ -120,14 +124,14 @@ nnoremap <Leader>f :CtrlP<CR>
 map <Leader>- :split<CR>
 map <Leader><bar> :vsplit<CR>
 
-map <leader>g :Gstatus<CR>
+map <leader>gs :Gstatus<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>n :set invnumber<CR>
 
 " Quickly edit/reload the vimrc file
 " maps the ,ev and ,sv keys to edit/reload .vimrc.
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ew :so $MYVIMRC<CR>
 
 
 " Removing search highlighting
@@ -144,9 +148,9 @@ filetype plugin on
 syntax on
 
 " switch buffer faster
-map gn :bn<cr>
-map gp :bp<cr>
-map gd :bd<cr>  
+map <Leader><Leader>n :bn<cr>
+map <Leader><Leader>p :bp<cr>
+map <Leader><Leader>d :bd<cr>  
 
 " enable mouse support
 set mouse=a
@@ -183,6 +187,27 @@ let g:slime_default_config = {"socket_name": "default", "target_pane": ":0.1"}
 
 " let g:rainbow_active = 1
 
+" setup go
+let g:go_bin_path = expand("~/gosrc/bin")
+
+let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+let g:go_auto_type_info = 0
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-test)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap gd <Plug>(go-def)
+
+
 
 " enable Better Rainbow Parentheses https://github.com/kien/rainbow_parentheses.vim
 let g:rbpt_max = 16
@@ -193,3 +218,24 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" make syntax off in diff mode
+" if !&diff
+"   syntax enable
+" endif
+
+"" set background=dark
+"" let g:solarized_visibility = "high"
+"" let g:solarized_contrast = "high"
+"" let g:solarized_termcolors=256
+"" " let g:solarized_termtrans = 1
+"" colorscheme solarized
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=white
+highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
+highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
+highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
