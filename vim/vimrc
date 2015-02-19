@@ -64,6 +64,8 @@ Bundle "jpalardy/vim-slime"
 " Bundle 'luochen1990/rainbow'
 Bundle "kien/rainbow_parentheses.vim"
 
+Bundle 'ryanss/vim-hackernews'
+
 "
 
 filetype plugin indent off
@@ -180,7 +182,7 @@ noremap N ddp
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter']
 
 " now setup tmux
-" setup Slime for TMUX
+" Setup Slime for TMUX
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 let g:slime_default_config = {"socket_name": "default", "target_pane": ":0.1"}
@@ -218,12 +220,16 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+" highlight current line
+set cursorline
+hi CursorLine term=bold cterm=bold ctermbg=Black
+
 " make syntax off in diff mode
 " if !&diff
 "   syntax enable
 " endif
 
-"" set background=dark
+""" set background=dark
 "" let g:solarized_visibility = "high"
 "" let g:solarized_contrast = "high"
 "" let g:solarized_termcolors=256
@@ -234,6 +240,7 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+map <C-n> <C-W>w
 
 highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=white
 highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
