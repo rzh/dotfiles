@@ -9,6 +9,12 @@ call vundle#rc()
 " alternatively, pass a path where Vundle should install plugins
 "let path = '~/some/path/here'
 "call vundle#rc(path)
+"
+" airline
+Plugin 'bling/vim-airline'
+
+" haxe
+Plugin 'jdonaldson/vaxe'
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
@@ -246,3 +252,5 @@ highlight DiffAdd term=reverse cterm=bold ctermbg=green ctermfg=white
 highlight DiffChange term=reverse cterm=bold ctermbg=cyan ctermfg=black
 highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
+
+let g:airline_powerline_fonts = 1
