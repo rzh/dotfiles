@@ -38,7 +38,7 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'jnurmine/Zenburn'
 
 " syntastic
-""""" Bundle "scrooloose/syntastic"
+NeoBundle "scrooloose/syntastic"
 
 " tagbar
 NeoBundle "majutsushi/tagbar"
