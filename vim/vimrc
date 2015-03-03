@@ -1,80 +1,101 @@
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
 
-" vundle 
-set nocompatible              " be iMproved, required
-filetype off                  " required
+  " Required:
+  set runtimepath+=/Users/rui/.vim/bundle/neobundle.vim/
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" alternatively, pass a path where Vundle should install plugins
-"let path = '~/some/path/here'
-"call vundle#rc(path)
-"
+" Required:
+call neobundle#begin(expand('/Users/rui/.vim/bundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Add or remove your Bundles here:
+NeoBundle 'Shougo/neosnippet.vim'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'flazz/vim-colorschemes'
+
 " airline
-Plugin 'bling/vim-airline'
+NeoBundle 'bling/vim-airline'
 
 " haxe
-Plugin 'jdonaldson/vaxe'
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
-
-" scripts on GitHub repos
-Plugin 'tpope/vim-fugitive'
+NeoBundle 'jdonaldson/vaxe'
 
 " just use go-vim
-Bundle "fatih/vim-go"
-
-" go setup
-"" Bundle "nsf/gocode"
-" Bundle 'Blackrush/vim-gocode'
-" vim-godef
-" Bundle "dgryski/vim-godef"
-
-" pakages
-" ctrlp.vim
-Bundle "kien/ctrlp.vim"
+NeoBundle "fatih/vim-go"
 
 " delimitMate
-Bundle "Raimondi/delimitMate"
+NeoBundle "Raimondi/delimitMate"
 
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'jnurmine/Zenburn'
-
-" gotags
-" nerdtree
-" supertab
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'jnurmine/Zenburn'
 
 " syntastic
-Bundle "scrooloose/syntastic"
+""""" Bundle "scrooloose/syntastic"
 
 " tagbar
-Bundle "majutsushi/tagbar"
+NeoBundle "majutsushi/tagbar"
 
 " tlib_vim
-Bundle "tomtom/tlib_vim"
+"""" Bundle "tomtom/tlib_vim"
 
 " vim-addon-mw-utils
-Bundle "MarcWeber/vim-addon-mw-utils"
+"" NeoBundle "MarcWeber/vim-addon-mw-utils"
 
 " vim-sensible
-Bundle "tpope/vim-sensible"
-" vim-snipmate
-" vim-snippets
-" YouCompleteMe
-Bundle "Valloric/YouCompleteMe"
+NeoBundle "tpope/vim-sensible"
 
+" YouCompleteMe
+NeoBundle 'Valloric/YouCompleteMe', {
+     \ 'build' : {
+     \     'mac' : 'git submodule update --init --recursive; ./install.sh ',
+     \     'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
+     \     'cygwin' : './install.sh --clang-completer --system-libclang --omnisharp-completer'
+     \    }
+     \ }
+"" 
 " vim-slime for tmux and repl
-Bundle "jpalardy/vim-slime"
+" Bundle "jpalardy/vim-slime"
 
 " Bundle 'luochen1990/rainbow'
-Bundle "kien/rainbow_parentheses.vim"
+NeoBundle "kien/rainbow_parentheses.vim"
 
-Bundle 'ryanss/vim-hackernews'
+"""" Bundle 'ryanss/vim-hackernews'
 
-"
+" disable vimproc/vimshell for now
+"" NeoBundle 'Shougo/vimproc.vim', {
+        "" \   'build' : {
+        "" \     'windows' : 'tools\\update-dll-mingw',
+        "" \     'cygwin' : 'make -f make_cygwin.mak',
+        "" \     'mac' : 'make -f make_mac.mak',
+        "" \     'linux' : 'make',
+        "" \     'unix' : 'gmake',
+        "" \   }
+        "" \ }
 
-filetype plugin indent off
+"" NeoBundle 'Shougo/vimshell'
+
+" Required:
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+"""" NeoBundleCheck
+"End NeoBundle Scripts-------------------------
+
+
+" filetype plugin indent off
 set runtimepath+=$GOROOT/misc/vim
 
 au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
