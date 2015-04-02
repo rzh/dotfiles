@@ -52,16 +52,6 @@ NeoBundle "majutsushi/tagbar"
 " vim-sensible
 NeoBundle "tpope/vim-sensible"
 
-" YouCompleteMe
-NeoBundle 'Valloric/YouCompleteMe', {
-     \ 'build' : {
-     \     'mac' : 'git submodule update --init --recursive; ./install.sh ',
-     \     'linux' : 'git submodule update --init --recursive; ./install.sh ',
-     \     'unix' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-     \     'windows' : './install.sh --clang-completer --system-libclang --omnisharp-completer',
-     \     'cygwin' : './install.sh --clang-completer --system-libclang --omnisharp-completer'
-     \    }
-     \ }
 "" 
 " vim-slime for tmux and repl
 " Bundle "jpalardy/vim-slime"
@@ -70,19 +60,6 @@ NeoBundle 'Valloric/YouCompleteMe', {
 NeoBundle "kien/rainbow_parentheses.vim"
 
 """" Bundle 'ryanss/vim-hackernews'
-
-" disable vimproc/vimshell for now
-NeoBundle 'Shougo/vimproc.vim', {
-        \   'build' : {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'linux' : 'make',
-        \     'unix' : 'gmake',
-        \   }
-        \ }
-
-"" NeoBundle 'Shougo/vimshell'
 
 " Required:
 call neobundle#end()
