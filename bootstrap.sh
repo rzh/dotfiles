@@ -1,14 +1,14 @@
 #!env bash
 
 if hash wget 2>/dev/null; then
-    wget --no-check-certificate https://raw.githubusercontent.com/rzh/dotfiles/master/vim/vimrc -O $HOME/.vimrc
-    wget --no-check-certificate https://raw.githubusercontent.com/rzh/dotfiles/master/tmux/tmux.conf -O $HOME/.tmux.conf
+    wget --no-check-certificate https://raw.githubusercontent.com/rzh/dotfiles/no_ycm/vim/vimrc -O $HOME/.vimrc
+    wget --no-check-certificate https://raw.githubusercontent.com/rzh/dotfiles/no_ycm/tmux/tmux.conf -O $HOME/.tmux.conf
 
     # dealin with neobundle
     wget --no-check-certificate https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh -O - | sh
 elif hash curl 2>/dev/null; then
-    curl -o $HOME/.vimrc https://raw.githubusercontent.com/rzh/dotfiles/master/vim/vimrc
-    curl -o $HOME/.tmux.conf https://raw.githubusercontent.com/rzh/dotfiles/master/tmux/tmux.conf 
+    curl -o $HOME/.vimrc https://raw.githubusercontent.com/rzh/dotfiles/no_ycm/vim/vimrc
+    curl -o $HOME/.tmux.conf https://raw.githubusercontent.com/rzh/dotfiles/no_ycm/tmux/tmux.conf 
 
     # dealin with neobundle
     curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
