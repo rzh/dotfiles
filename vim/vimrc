@@ -287,6 +287,9 @@ map <Leader>k <C-b>
 "" across terminal copy
 set clipboard=unnamed
 
+hi SpellBad ctermfg=232 ctermbg=130 guifg=#080808 guibg=#af5f00
+hi SpellCap ctermfg=232 ctermbg=118 guifg=#080808 guibg=#87ff00
+
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
 
