@@ -156,6 +156,7 @@ map <Leader><bar> :vsplit<CR>
 
 map <leader>gs :Gstatus<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>n :set invnumber<CR>
 
 " Quickly edit/reload the vimrc file
@@ -250,7 +251,8 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " highlight current line
 set cursorline
-hi CursorLine term=bold cterm=bold ctermbg=Black
+" hi CursorLine term=bold cterm=bold ctermbg=Black
+hi CursorLine term=bold cterm=bold 
 
 " make syntax off in diff mode
 " if !&diff
@@ -276,3 +278,16 @@ highlight DiffText term=reverse cterm=bold ctermbg=gray ctermfg=black
 highlight DiffDelete term=reverse cterm=bold ctermbg=red ctermfg=black
 
 let g:airline_powerline_fonts = 1
+
+imap jj  <Esc>
+map ff  <C-f>
+map <Leader>j <C-f>
+map <Leader>k <C-b>
+
+"" across terminal copy
+set clipboard=unnamed
+
+highlight link SyntasticError SpellBad
+highlight link SyntasticWarning SpellCap
+
+map <Leader>s :setlocal spell! spelllang=en_us<CR>
