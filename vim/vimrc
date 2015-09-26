@@ -249,6 +249,9 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exec = 'eslint_d'
+
 " highlight current line
 set cursorline
 " hi CursorLine term=bold cterm=bold ctermbg=Black
@@ -293,4 +296,4 @@ hi SpellCap ctermfg=232 ctermbg=118 guifg=#080808 guibg=#87ff00
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
 
-map <Leader>s :setlocal spell! spelllang=en_us<CR>
+map <Leader>c :setlocal spell! spelllang=en_us<CR>
