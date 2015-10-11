@@ -5,6 +5,8 @@ if hash wget 2>/dev/null; then
     wget --no-check-certificate https://raw.githubusercontent.com/rzh/dotfiles/master/tmux/tmux.conf -O $HOME/.tmux.conf
 
     # dealin with neobundle
+    mkdir -p ~/.vim/bundle
+    git clone github:Shougo/vimproc.vim ~/.vim/bundle/vimproc.vim
     wget --no-check-certificate https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh -O - | sh
 elif hash curl 2>/dev/null; then
     curl -o $HOME/.vimrc https://raw.githubusercontent.com/rzh/dotfiles/master/vim/vimrc
