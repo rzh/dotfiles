@@ -15,6 +15,16 @@ call neobundle#begin(expand('~/.vim/bundle'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+" disable vimproc/vimshell for now
+NeoBundle 'Shougo/vimproc.vim', {
+        \   'build' : {
+        \     'windows' : 'tools\\update-dll-mingw',
+        \     'cygwin' : 'make -f make_cygwin.mak',
+        \     'mac' : 'make -f make_mac.mak',
+        \     'linux' : 'make',
+        \     'unix' : 'gmake',
+        \   }
+        \ }
 " Add or remove your Bundles here:
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -71,16 +81,6 @@ NeoBundle "kien/rainbow_parentheses.vim"
 
 """" Bundle 'ryanss/vim-hackernews'
 
-" disable vimproc/vimshell for now
-NeoBundle 'Shougo/vimproc.vim', {
-        \   'build' : {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'linux' : 'make',
-        \     'unix' : 'gmake',
-        \   }
-        \ }
 
 "" NeoBundle 'Shougo/vimshell'
 
