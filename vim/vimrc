@@ -296,4 +296,10 @@ hi SpellCap ctermfg=232 ctermbg=118 guifg=#080808 guibg=#87ff00
 highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
 
+"" change 
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+"" let &colorcolumn=join(range(81,999),",")
+let &colorcolumn="81"
+
+"" spell check
 map <Leader>c :setlocal spell! spelllang=en_us<CR>
