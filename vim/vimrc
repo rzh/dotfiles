@@ -81,6 +81,12 @@ NeoBundle "kien/rainbow_parentheses.vim"
 
 """" Bundle 'ryanss/vim-hackernews'
 
+" Python PEP8
+NeoBundle 'nvie/vim-flake8'
+NeoBundle 'vim-scripts/indentpython.vim'
+
+
+
 
 "" NeoBundle 'Shougo/vimshell'
 
@@ -166,7 +172,7 @@ nmap <silent> <leader>ew :so $MYVIMRC<CR>
 
 
 " Removing search highlighting
-" nnoremap <ESC><ESC> :nohlsearch<CR>
+nnoremap <ESC><ESC> :nohlsearch<CR>
 nnoremap <Leader><Space> :nohlsearch<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
