@@ -17,20 +17,26 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " disable vimproc/vimshell for now
 NeoBundle 'Shougo/vimproc.vim', {
-        \   'build' : {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin' : 'make -f make_cygwin.mak',
-        \     'mac' : 'make -f make_mac.mak',
-        \     'linux' : 'make',
-        \     'unix' : 'gmake',
-        \   }
-        \ }
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+
 " Add or remove your Bundles here:
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'junegunn/fzf.vim'
+
+NeoBundle 'easymotion/vim-easymotion'
+
+NeoBundle 'neomake/neomake'
 
 " airline
 NeoBundle 'bling/vim-airline'
@@ -48,7 +54,8 @@ NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'jnurmine/Zenburn'
 
 " syntastic
-NeoBundle "scrooloose/syntastic"
+"" NeoBundle "scrooloose/syntastic"
+NeoBundle "w0rp/ale"
 
 " tagbar
 NeoBundle "majutsushi/tagbar"
@@ -82,6 +89,7 @@ NeoBundle "kien/rainbow_parentheses.vim"
 """" Bundle 'ryanss/vim-hackernews'
 
 " Python PEP8
+NeoBundle 'python-mode/python-mode'
 NeoBundle 'nvie/vim-flake8'
 NeoBundle 'vim-scripts/indentpython.vim'
 
@@ -115,6 +123,9 @@ au Filetype go nnoremap <leader>v :vsp <CR>:exe "GoDef" <CR>
 
 filetype plugin indent on     " reuired
 
+let g:ale_emit_conflict_warnings = 0
+
+set rtp+=/usr/local/opt/fzf
 
 set nowrap        " don't wrap lines
 set expandtab
@@ -173,7 +184,7 @@ nmap <silent> <leader>ew :so $MYVIMRC<CR>
 
 " Removing search highlighting
 nnoremap <ESC><ESC> :nohlsearch<CR>
-nnoremap <Leader><Space> :nohlsearch<CR>
+"" nnoremap <Leader><Space> :nohlsearch<CR>
 
 nmap <Leader>t :TagbarToggle<CR>
 
@@ -185,9 +196,9 @@ filetype plugin on
 syntax on
 
 " switch buffer faster
-map <Leader><Leader>n :bn<cr>
-map <Leader><Leader>p :bp<cr>
-map <Leader><Leader>d :bd<cr>  
+map <Leader>bn :bn<cr>
+map <Leader>bp :bp<cr>
+map <Leader>bd :bd<cr>
 
 " enable mouse support
 set mouse=a
@@ -231,6 +242,11 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_autosave = 1
 let g:go_auto_type_info = 0
 
+" highlight bad white space
+"" autocmd ColorScheme * highlight BadWhitespace ctermbg=red guibg=red
+"" au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
+
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -271,8 +287,8 @@ hi CursorLine term=bold cterm=bold
 """ set background=dark
 "" let g:solarized_visibility = "high"
 "" let g:solarized_contrast = "high"
-"" let g:solarized_termcolors=256
-"" " let g:solarized_termtrans = 1
+let g:solarized_termcolors=256
+let g:solarized_termtrans = 1
 "" colorscheme solarized
 
 map <C-j> <C-W>j
@@ -303,9 +319,30 @@ highlight link SyntasticError SpellBad
 highlight link SyntasticWarning SpellCap
 
 "" change 
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
+highlight ColorColumn ctermbg=238 guibg=#2c2d27
 "" let &colorcolumn=join(range(81,999),",")
-let &colorcolumn="81"
+let &colorcolumn="81,120"
 
 "" spell check
 map <Leader>c :setlocal spell! spelllang=en_us<CR>
+
+
+" syntastic & neomake
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:neomake_python_enabled_makers = ['pylint']
+
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_python_checkers=['pylint']
+
+
+" make pylint faster
+let g:syntastic_check_on_open = 0
+let g:neomake_check_on_wq = 1
+
+" neomake
+autocmd! BufWritePost * Neomake
+
+set nofoldenable 
